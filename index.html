@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/hackclub/css@79ee8661dfe9ab17af7d35cd8d9d7373029a8919/theme.css"
+    />
+    <link
+      rel="stylesheet"
+href="https://cdn.jsdelivr.net/gh/hackclub/css@79ee8661dfe9ab17af7d35cd8d9d7373029a8919/fonts.css"
+    />
+    <style>
+      .btn {
+        cursor: pointer;
+        font-family: inherit;
+        font-weight: var(--font-weight-bold);
+        border-radius: var(--radii-circle);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: var(--shadow-card);
+        letter-spacing: var(--letter-spacing-headline);
+        -webkit-tap-highlight-color: transparent;
+        transition: transform 0.125s ease-in-out, box-shadow 0.125s ease-in-out;
+        box-sizing: border-box;
+        margin: 0;
+        min-width: 0;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        text-align: center;
+        line-height: inherit;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        color: var(--theme-ui-colors-white, #ffffff);
+        background-color: var(--theme-ui-colors-primary, #ec3750);
+        border: 0;
+        font-size: var(--font-2);
+      }
+
+      .btn:focus,
+      .btn:hover {
+        box-shadow: var(--shadow-elevated);
+        transform: scale(1.0625);
+      }
+
+      .btn.disabled {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+
+      p {
+        font-size: var(--font-3);
+        margin-top: 0;
+      }
+
+      #orpheus {
+        width: 512px;
+        height: 500px;
+        background-size: cover;
+        background-position: center;
+      }
+      #orpheus.closed {
+        background-image: url("https://cloud-boay7mu79-hack-club-bot.vercel.app/0image.png");
+      }
+      #orpheus.open {
+        background-image: url("https://cloud-boay7mu79-hack-club-bot.vercel.app/1image.png");
+      }
+
+      #orpheus.chomp {
+        animation: chomp 0.3s linear infinite;
+      }
+
+      @keyframes chomp {
+        0% {
+          background-image: url("https://cloud-boay7mu79-hack-club-bot.vercel.app/0image.png");
+        }
+        49% {
+          background-image: url("https://cloud-boay7mu79-hack-club-bot.vercel.app/0image.png");
+        }
+
+        50% {
+          background-image: url("https://cloud-boay7mu79-hack-club-bot.vercel.app/1image.png");
+        }
+        100% {
+          background-image: url("https://cloud-boay7mu79-hack-club-bot.vercel.app/1image.png");
+        }
+      }
+    </style>
+  </head>
+  <body style="margin: 0">
+    <div
+      style="
+        min-height: 100vh;
+        padding: 20px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      "
+    >
+      <img
+        src="https://cloud-boay7mu79-hack-club-bot.vercel.app/1image.png"
+        style="display: none"
+      />
+      <div>
+        <h2 style="text-align: center">feed orpheus your email</h2>
+      <p style="width: 80vw; margin: auto; margin-bottom: 0; text-align: center" id="text">
+        i'll send a follow up  <br /> no spam (i promise).
+      </p>
+      <div style="position: relative; width: 100%; height: 100%;">
+      <div id="orpheus" class="open" style="margin: auto"></div>
+      <form
+        action="https://airtable-forms-proxy.hackclub.dev/api/appPSjvHX4TYkaoRy/human?redirect=https://hackclub.com"
+        id="form" method="POST" style="position: absolute; left: 50%; top: 50%; transform: translate(-30%, -50%); display: flex; flex-direction: column;">
+        <input type="email" id="email" name="email" placeholder="fiona@hackclub.com" required>
+          <button id="button" style="background: #000; color: white; font-size: 16px; margin-top: 12px; z-index: 34">
+      Submit
+    </button>
+      </form>
+      </div> 
+      </div>
+    </div>
+
+    <script>
+      const orpheus = document.getElementById("orpheus");
+      let button = document.getElementById("button")
+      let form = document.getElementById("form")
+      let text = document.getElementById("text")
+
+      button.addEventListener("click", () => {
+        orpheus.classList.remove("open");
+        orpheus.classList.add("chomp");
+        text.innerHTML = "yum — thank you!"
+        form.style.display = "none"
+        setTimeout(() => {form.submit()}, 3000)
+      })
+    </script>
+  </body>
+</html>
